@@ -87,7 +87,6 @@ export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
   font-size: 1rem;
   font-weight: 400;
   
-  border: 1px solid #D7D7D7;
   border-radius: 0.25rem;
   
   background: ${({ isActive, activeColor }) => isActive 
@@ -95,10 +94,18 @@ export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
     : 'transparent'
   };
 
+  border: 1px solid ${({ isActive, activeColor }) => isActive 
+    ? transparentize(0.4, transactionTypeButtonColors[activeColor]) 
+    : 'transparent'
+  };
+
   transition: border-color 0.2s;
 
   &:hover {
-    border-color: ${darken(0.1, '#D7D7D7')};
+    border-color: ${({ isActive, activeColor }) => darken(0.1, isActive 
+      ? transactionTypeButtonColors[activeColor] 
+      : '#D7D7D7'
+    )};
   }
 
   img {
